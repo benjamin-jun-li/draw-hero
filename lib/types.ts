@@ -1,11 +1,19 @@
-import React from "react";
+import { ReactNode } from "react";
 
 export interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export interface OrgItemProps {
-    id: string,
-    name: string,
-    imageUrl: string
+  id: string;
+  name: string;
+  imageUrl: string;
+}
+
+export interface HintProps extends LayoutProps {
+  label: string,
+  side? : "top" | "bottom" | "left" | "right",
+  align? : "start" | "center" | "end",
+  sideOffset?: number,
+  alignOffset?: number 
 }
