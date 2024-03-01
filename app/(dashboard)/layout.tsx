@@ -7,11 +7,11 @@ const DashboardLayout = ({ children }: LayoutProps) => {
   return (
     <main className="h-full">
       <SideBar />
-      <div className="h-full ml-[3rem]">
-        <Navbar />
-        <div className="h-full flex flex-row">
-          <OrgSideBar />
-          {children}
+      <div className="h-full ml-[3rem] flex">
+        <OrgSideBar />
+        <div className="flex-1">
+          <Navbar />
+          <div className="h-full flex flex-row">{children}</div>
         </div>
       </div>
     </main>
