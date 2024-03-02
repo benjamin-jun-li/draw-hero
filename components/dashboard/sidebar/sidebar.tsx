@@ -1,4 +1,4 @@
-import NewButton from "./new_button";
+import NewButton from "./new_btn";
 import OrgList from "./org_list";
 
 const SideBar = () => {

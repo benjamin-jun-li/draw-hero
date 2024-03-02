@@ -17,3 +17,14 @@ export interface HintProps extends LayoutProps {
   sideOffset?: number,
   alignOffset?: number 
 }
+
+export interface DashboardPageProps {
+  searchParams: {
+    search?: string,
+    favorites?: string
+  }
+}
+
+export interface BoardListProps extends DashboardPageProps {
+  orgID: string,
+}
