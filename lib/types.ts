@@ -11,20 +11,20 @@ export interface OrgItemProps {
 }
 
 export interface HintProps extends LayoutProps {
-  label: string,
-  side? : "top" | "bottom" | "left" | "right",
-  align? : "start" | "center" | "end",
-  sideOffset?: number,
-  alignOffset?: number 
+  label: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
+  sideOffset?: number;
+  alignOffset?: number;
 }
 
 export interface DashboardPageProps {
   searchParams: {
-    search?: string,
-    favorites?: string
-  }
+    search?: string;
+    favorites?: string;
+  };
 }
 
 export interface BoardListProps extends DashboardPageProps {
-  orgID: string,
+  orgID: string;
 }

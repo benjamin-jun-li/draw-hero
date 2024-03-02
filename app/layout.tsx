@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import ConvexClientProvider from "@/providers/convex_client";
-
+import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={cn(inter.className, "min-h-screen")}>
+        <Toaster richColors/>
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
     </html>

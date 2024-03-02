@@ -15,7 +15,27 @@ const BoardList = ({ orgID, searchParams }: BoardListProps) => {
   return <div>{JSON.stringify(searchParams)}</div>;
 };
 
+import { api } from "@/convex/_generated/api";
+import { useOrganization } from "@clerk/nextjs";
+import { useApiMutation } from "@/lib/hooks/use_api_mutation";
+import { toast } from "sonner";
+
 const EmptyData = () => {
+  const { organization } = useOrganization();
+  const { mutate, pending } = useApiMutation(api.board.create);
+
+  const handleClick = () => {
+    if (!organization) return;
+
+    mutate({
+      orgID: organization.id,
+      title: "untitled",
+    }).then(id => {
+      toast.success("Board created");
+      //TODO redirect to board
+    }).catch(() => toast.error("Failed to create board"));
+  }
+
   return (
     <div className="h-4/5 flex flex-col justify-center items-center">
       <Image src="./empty-box.svg" alt="empty board" width={200} height={200} />
@@ -23,7 +43,7 @@ const EmptyData = () => {
       <p className="text-muted-foreground text-md">
         Start by creating a board for your organization
       </p>
-      <Button className="mt-3" size="lg">
+      <Button disabled={pending} className="mt-3" size="lg" onClick={handleClick}>
         Create Board
       </Button>
     </div>
