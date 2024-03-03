@@ -1,3 +1,7 @@
+/**
+ * @Info Props used for components
+ */
+
 import { ReactNode } from "react";
 
 export interface LayoutProps {
@@ -27,4 +31,44 @@ export interface DashboardPageProps {
 
 export interface BoardListProps extends DashboardPageProps {
   orgID: string;
+}
+
+export interface BoardCardProps {
+  id: string;
+  title: string;
+  authorName: string;
+  authorID: string;
+  createdAt: number;
+  imageUrl: string;
+  orgID: string;
+  isFavorite: boolean;
+}
+
+export interface CardContentProps {
+  isFavorite: boolean;
+  title: string;
+  authorLabel: string;
+  createdAtLabel: string;
+  onClick: () => void;
+  disabled: boolean;
+}
+
+export interface NewBoardButtonProps {
+  orgID: string;
+  disabled?: boolean;
+}
+
+import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
+export interface ActionsProps extends LayoutProps {
+  side?: DropdownMenuContentProps["side"];
+  sideOffset?: DropdownMenuContentProps["sideOffset"];
+  id: string;
+  title: string;
+}
+
+export interface ConfirmModalProps extends LayoutProps {
+  onConfirm: () => void;
+  disabled?: boolean;
+  header: string;
+  description?: string;
 }
