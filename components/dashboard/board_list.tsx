@@ -51,7 +51,7 @@ const BoardList = ({ orgID, searchParams }: BoardListProps) => {
             authorName={board.authorName}
             createdAt={board._creationTime}
             orgID={board.orgID}
-            isFavorite={false}
+            isFavorite={board.isFavorite}
           />
         ))}
       </div>

@@ -61,8 +61,60 @@ export const update = mutation({
       throw new Error("Title should be less than 60 characters");
 
     const board = await ctx.db.patch(args.id, {
-      title: title
+      title: title,
     });
+
+    return board;
+  },
+});
+
+export const favorite = mutation({
+  args: { id: v.id("boards"), orgID: v.string() },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+
+    const board = await ctx.db.get(args.id);
+    if (!board) throw new Error("Board not found");
+
+    const userID = identity.subject;
+    const existingFavorite = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_user_board_org", (q) =>
+        q.eq("userID", userID).eq("boardID", board._id).eq("orgID", args.orgID)
+      )
+      .unique();
+    if (existingFavorite) throw new Error("Board already favorited");
+
+    await ctx.db.insert("userFavorites", {
+      userID,
+      boardID: board._id,
+      orgID: args.orgID
+    });
+
+    return board;
+  },
+});
+
+export const unfavorite = mutation({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+
+    const board = await ctx.db.get(args.id);
+    if (!board) throw new Error("Board not found");
+
+    const userID = identity.subject;
+    const existingFavorite = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_user_board", (q) =>
+        q.eq("userID", userID).eq("boardID", board._id)
+      )
+      .unique();
+    if (!existingFavorite) throw new Error("Favorite board not found");
+
+    await ctx.db.delete(existingFavorite._id);
 
     return board;
   },

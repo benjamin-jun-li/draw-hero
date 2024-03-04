@@ -9,6 +9,9 @@ import { formatDistanceToNow } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import CardContent from "./card_content";
 import Actions from "@/components/actions";
+import { useApiMutation } from "@/lib/hooks/use_api_mutation";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 const BoardCard = ({
   id,
@@ -23,6 +26,20 @@ const BoardCard = ({
   const { userId } = useAuth();
   const authorLabel = userId === authorID ? "You" : authorName;
   const createdAtLabel = formatDistanceToNow(createdAt, { addSuffix: true });
+  const { mutate: onFavorite, pending: pendingFavorite } = useApiMutation(
+    api.board.favorite
+  );
+  const { mutate: onUnFavorite, pending: pendingUnFavorite } = useApiMutation(
+    api.board.unfavorite
+  );
+
+  const toggleFav = () => {
+    if (isFavorite) {
+      onUnFavorite({ id }).catch(() => toast.error("Failed to unfavorite"));
+    } else {
+      onFavorite({ id, orgID }).catch(() => toast.error("Failed to favorite"));
+    }
+  };
 
   return (
     <Link href={`/board/${id}`}>
@@ -49,8 +66,8 @@ const BoardCard = ({
           title={title}
           authorLabel={authorLabel}
           createdAtLabel={createdAtLabel}
-          onClick={() => {}}
-          disabled={false}
+          onClick={toggleFav}
+          disabled={pendingFavorite || pendingUnFavorite}
         />
       </div>
     </Link>

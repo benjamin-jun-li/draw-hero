@@ -10,6 +10,11 @@ const CardContent = ({
   onClick,
   disabled,
 }: CardContentProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onClick();
+  }
   return (
     <div className="relative bg-white p-3">
       <p className="text-md truncate max-w-[calc(100% - 20px)]">{title}</p>
@@ -18,7 +23,7 @@ const CardContent = ({
       </p>
       <button
         disabled={disabled}
-        onClick={onClick}
+        onClick={handleClick}
         className={cn(
           "opacity-0 group-hover:opacity-100 transition absolute top-3 right-3 text-muted-foreground hover:text-orange-500",
           disabled && "cursor-not-allowed opacity-75"
