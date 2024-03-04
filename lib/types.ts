@@ -59,6 +59,7 @@ export interface NewBoardButtonProps {
 }
 
 import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
+import BoardIdPage from "@/app/board/[id]/page";
 export interface ActionsProps extends LayoutProps {
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
@@ -71,4 +72,14 @@ export interface ConfirmModalProps extends LayoutProps {
   disabled?: boolean;
   header: string;
   description?: string;
+}
+
+export interface BoardIdPageProps {
+  params: {
+    boardID: string;
+  };
+}
+
+export interface CanvasProps {
+  boardID: string
 }

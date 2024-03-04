@@ -5,16 +5,20 @@ import { useApiMutation } from "@/lib/hooks/use_api_mutation";
 import { NewBoardButtonProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 const NewBoardButton = ({ orgID, disabled }: NewBoardButtonProps) => {
+  const router = useRouter();
   const { mutate, pending } = useApiMutation(api.board.create);
   const handleClick = () => {
     mutate({
       orgID,
       title: "Untitled",
     })
-    .then(id => toast.success("Board created"))
-    .catch(() => toast.error("Failed to create board"));
+      .then((id) => {
+        toast.success("Board created");
+        router.push(`/board/${id}`);
+      })
+      .catch(() => toast.error("Failed to create board"));
   };
   return (
     <button
