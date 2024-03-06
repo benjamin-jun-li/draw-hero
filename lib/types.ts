@@ -76,10 +76,15 @@ export interface ConfirmModalProps extends LayoutProps {
 
 export interface BoardIdPageProps {
   params: {
-    boardID: string;
+    id: string;
   };
 }
 
 export interface CanvasProps {
-  boardID: string
+  boardID: string;
 }
+
+export type RoomProps = LayoutProps & {
+  roomID: string;
+  fallback: NonNullable<ReactNode> | null
+};

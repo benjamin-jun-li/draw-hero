@@ -8,6 +8,10 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    LIVEBLOCK_PUBLIC_KEY: process.env.LIVEBLOCK_PUBLIC_KEY,
+    LIVEBLOCK_SECRET_KEY: process.env.LIVEBLOCK_SECRET_KEY
+  }
 };
 
 export default nextConfig;
