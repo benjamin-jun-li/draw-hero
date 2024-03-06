@@ -9,7 +9,7 @@ import { LayoutDashboard, Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { useSearchParams } from "next/navigation";
 
-const font = Poppins({
+export const font = Poppins({
   subsets: ["latin"],
   weight: ["600"],
 });

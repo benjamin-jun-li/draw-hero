@@ -84,6 +84,8 @@ export interface CanvasProps {
   boardID: string;
 }
 
+export type InfoProps = CanvasProps;
+
 export type RoomProps = LayoutProps & {
   roomID: string;
   fallback: NonNullable<ReactNode> | null

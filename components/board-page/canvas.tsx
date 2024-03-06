@@ -7,7 +7,7 @@ import Toolbar from "./toolbar";
 const Canvas = ({ boardID }: CanvasProps ) => {
   return (
     <main className="h-full w-full bg-neutral-200 touch-none">
-      <Info />
+      <Info boardID={boardID}/>
       <Participants />
       <Toolbar />
     </main>
