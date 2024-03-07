@@ -2,7 +2,7 @@
  * @Info Props used for components
  */
 
-import { ReactNode } from "react";
+import { ReactNode, VoidFunctionComponent } from "react";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -59,7 +59,6 @@ export interface NewBoardButtonProps {
 }
 
 import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
-import BoardIdPage from "@/app/board/[id]/page";
 export interface ActionsProps extends LayoutProps {
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
@@ -88,5 +87,162 @@ export type InfoProps = CanvasProps;
 
 export type RoomProps = LayoutProps & {
   roomID: string;
-  fallback: NonNullable<ReactNode> | null
+  fallback: NonNullable<ReactNode> | null;
 };
+
+export interface UserAvatarProps {
+  src?: string;
+  name?: string;
+  fallback?: string;
+  borderColor?: string;
+}
+
+import { LucideIcon } from "lucide-react";
+export interface ToolBtnProps {
+  label: string;
+  icon: LucideIcon;
+  onClick: () => void;
+  isActive?: boolean;
+  isDisabled?: boolean;
+}
+
+/**
+ * type for canvas
+ */
+export enum CanvasMode {
+  None,
+  Pressing,
+  SelectionNet,
+  Translating,
+  Inserting,
+  Resizing,
+  Pencil,
+}
+
+export type Color = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+export type Camera = {
+  x: number;
+  y: number;
+};
+
+export enum CanvasLayerType {
+  Rectangle,
+  Ellipse,
+  Path,
+  Text,
+  Note,
+}
+
+export type RectangleLayer = {
+  type: CanvasLayerType.Rectangle;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: Color;
+  value?: string;
+};
+
+export type EllipseLayer = {
+  type: CanvasLayerType.Ellipse;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: Color;
+  value?: string;
+};
+
+export type PathLayer = {
+  type: CanvasLayerType.Path;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: Color;
+  points: number[][];
+  value?: string;
+};
+
+export type TextLayer = {
+  type: CanvasLayerType.Text;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: Color;
+  value?: string;
+};
+
+export type NoteLayer = {
+  type: CanvasLayerType.Note;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: Color;
+  value?: string;
+};
+
+export type Point = {
+  x: number;
+  y: number;
+};
+
+export type XYWH = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export enum Side {
+  Top = 1,
+  Bottom = 2,
+  Left = 4,
+  Right = 8
+}
+
+export type CanvasState =
+  | {
+      mode: CanvasMode.None;
+    }
+  | {
+      mode: CanvasMode.SelectionNet;
+      origin: Point;
+      current?: Point;
+    }
+  | {
+      mode: CanvasMode.Translating;
+      current: Point;
+    }
+  | {
+      mode: CanvasMode.Inserting;
+      layerType: CanvasLayerType.Ellipse | CanvasLayerType.Rectangle | CanvasLayerType.Text | CanvasLayerType.Note
+    }
+  | {
+      mode: CanvasMode.Pencil;
+    }
+  | {
+      mode: CanvasMode.Pressing;
+      origin: Point
+    }
+  | {
+      mode: CanvasMode.Resizing;
+      initialBounds: XYWH;
+      corner: Side
+    }; // keep track of the tool we are using
+
+export interface ToolBarProps {
+  canvasState: CanvasState;
+  setCanvasState: (newState: CanvasState) => void;
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+}
