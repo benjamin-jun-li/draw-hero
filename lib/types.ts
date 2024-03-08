@@ -2,7 +2,7 @@
  * @Info Props used for components
  */
 
-import { ReactNode, VoidFunctionComponent } from "react";
+import React, { ReactNode, VoidFunctionComponent } from "react";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -104,6 +104,32 @@ export interface ToolBtnProps {
   onClick: () => void;
   isActive?: boolean;
   isDisabled?: boolean;
+}
+
+export interface CursorProps {
+  connectionID: number;
+}
+
+export interface ToolBarProps {
+  canvasState: CanvasState;
+  setCanvasState: (newState: CanvasState) => void;
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+}
+
+export interface LayerPreviewProps {
+  id: string;
+  onLayerPointDown: (e: React.PointerEvent, layerID: string) => void;
+  selectionColor?: string;
+}
+
+export interface RectangleProps {
+  id: string,
+  layer: RectangleLayer,
+  onPointDown: (e: React.PointerEvent, id: string) => void;
+  selectionColor?: string;
 }
 
 /**
@@ -242,15 +268,9 @@ export type CanvasState =
       corner: Side;
     }; // keep track of the tool we are using
 
-export interface ToolBarProps {
-  canvasState: CanvasState;
-  setCanvasState: (newState: CanvasState) => void;
-  undo: () => void;
-  redo: () => void;
-  canUndo: boolean;
-  canRedo: boolean;
-}
-
-export interface CursorProps {
-  connectionID: number;
-}
+export type Layer =
+  | RectangleLayer
+  | EllipseLayer
+  | PathLayer
+  | TextLayer
+  | NoteLayer;

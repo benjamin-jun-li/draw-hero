@@ -109,7 +109,7 @@ const Toolbar = ({
             label="Undo"
             icon={Undo2}
             onClick={undo}
-            isDisabled={canUndo}
+            isDisabled={!canUndo}
           />
         </li>
         <li>
@@ -117,7 +117,7 @@ const Toolbar = ({
             label="Redo"
             icon={Redo2}
             onClick={redo}
-            isDisabled={canRedo}
+            isDisabled={!canRedo}
           />
         </li>
       </ul>

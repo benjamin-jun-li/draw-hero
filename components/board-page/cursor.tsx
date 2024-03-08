@@ -5,7 +5,7 @@ import { CursorProps } from "@/lib/types";
 import { useOther } from "@/liveblocks.config";
 import { MousePointer2 } from "lucide-react";
 
-export const Cursor = ({ connectionID }: CursorProps) => {
+const Cursor = ({ connectionID }: CursorProps) => {
   const info = useOther(connectionID, (user) => user?.info);
   const cursor = useOther(connectionID, (user) => user.presence.cursor);
 
@@ -42,3 +42,4 @@ export const Cursor = ({ connectionID }: CursorProps) => {
 };
 
 Cursor.displayName = "Cursor";
+export default Cursor;

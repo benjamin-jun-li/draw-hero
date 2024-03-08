@@ -1,7 +1,7 @@
 "use client";
 import { memo } from "react";
 import { useOthersConnectionIds } from "@/liveblocks.config";
-import { Cursor } from "./cursor";
+import Cursor from "./cursor";
 
 const Cursors = () => {
   const ids = useOthersConnectionIds();
@@ -11,7 +11,7 @@ const Cursors = () => {
   )))
 };
 
-export const CursorsPresence = memo(() => {
+const CursorsPresence = memo(() => {
   return (
     <>
       <Cursors />
@@ -20,3 +20,4 @@ export const CursorsPresence = memo(() => {
 });
 
 CursorsPresence.displayName = "CursorsPresence";
+export default CursorsPresence;
