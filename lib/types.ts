@@ -205,7 +205,7 @@ export enum Side {
   Top = 1,
   Bottom = 2,
   Left = 4,
-  Right = 8
+  Right = 8,
 }
 
 export type CanvasState =
@@ -223,19 +223,23 @@ export type CanvasState =
     }
   | {
       mode: CanvasMode.Inserting;
-      layerType: CanvasLayerType.Ellipse | CanvasLayerType.Rectangle | CanvasLayerType.Text | CanvasLayerType.Note
+      layerType:
+        | CanvasLayerType.Ellipse
+        | CanvasLayerType.Rectangle
+        | CanvasLayerType.Text
+        | CanvasLayerType.Note;
     }
   | {
       mode: CanvasMode.Pencil;
     }
   | {
       mode: CanvasMode.Pressing;
-      origin: Point
+      origin: Point;
     }
   | {
       mode: CanvasMode.Resizing;
       initialBounds: XYWH;
-      corner: Side
+      corner: Side;
     }; // keep track of the tool we are using
 
 export interface ToolBarProps {
@@ -245,4 +249,8 @@ export interface ToolBarProps {
   redo: () => void;
   canUndo: boolean;
   canRedo: boolean;
+}
+
+export interface CursorProps {
+  connectionID: number;
 }
