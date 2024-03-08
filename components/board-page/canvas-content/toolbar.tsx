@@ -64,41 +64,53 @@ const Toolbar = ({
                 layerType: CanvasLayerType.Note,
               })
             }
-            isActive={canvasState.mode === CanvasMode.Inserting &&
-              canvasState.layerType === CanvasLayerType.Note}
+            isActive={
+              canvasState.mode === CanvasMode.Inserting &&
+              canvasState.layerType === CanvasLayerType.Note
+            }
           />
         </li>
         <li>
           <ToolBtn
             label="Rectangle"
             icon={Square}
-            onClick={() => setCanvasState({
-              mode: CanvasMode.Inserting,
-              layerType: CanvasLayerType.Rectangle,
-            })}
-            isActive={canvasState.mode === CanvasMode.Inserting &&
-              canvasState.layerType === CanvasLayerType.Rectangle}
+            onClick={() =>
+              setCanvasState({
+                mode: CanvasMode.Inserting,
+                layerType: CanvasLayerType.Rectangle,
+              })
+            }
+            isActive={
+              canvasState.mode === CanvasMode.Inserting &&
+              canvasState.layerType === CanvasLayerType.Rectangle
+            }
           />
         </li>
         <li>
           <ToolBtn
             label="Ellips"
             icon={Circle}
-            onClick={() => setCanvasState({
-              mode: CanvasMode.Inserting,
-              layerType: CanvasLayerType.Ellipse,
-            })}
-            isActive={canvasState.mode === CanvasMode.Inserting &&
-              canvasState.layerType === CanvasLayerType.Ellipse}
+            onClick={() =>
+              setCanvasState({
+                mode: CanvasMode.Inserting,
+                layerType: CanvasLayerType.Ellipse,
+              })
+            }
+            isActive={
+              canvasState.mode === CanvasMode.Inserting &&
+              canvasState.layerType === CanvasLayerType.Ellipse
+            }
           />
         </li>
         <li>
           <ToolBtn
             label="Pen"
             icon={Pencil}
-            onClick={() => setCanvasState({
-              mode: CanvasMode.Pencil,
-            })}
+            onClick={() =>
+              setCanvasState({
+                mode: CanvasMode.Pencil,
+              })
+            }
             isActive={canvasState.mode === CanvasMode.Pencil}
           />
         </li>

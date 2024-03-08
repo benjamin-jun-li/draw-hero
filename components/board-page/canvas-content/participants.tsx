@@ -1,6 +1,6 @@
 "use client";
 import { connectionIdToColor } from "@/lib/utils";
-import UserAvatar from "./user_avatar";
+import UserAvatar from "../user_avatar";
 import { useOthers, useSelf } from "@/liveblocks.config";
 
 const MAX_OTHERUSER_SHOWN = 3;
@@ -29,7 +29,10 @@ const Participants = () => {
         ></UserAvatar>
       )}
       {hasMoreUsers && (
-        <UserAvatar name={`${users.length - MAX_OTHERUSER_SHOWN} more`} fallback={`+${users.length - MAX_OTHERUSER_SHOWN}`}></UserAvatar>
+        <UserAvatar
+          name={`${users.length - MAX_OTHERUSER_SHOWN} more`}
+          fallback={`+${users.length - MAX_OTHERUSER_SHOWN}`}
+        ></UserAvatar>
       )}
     </div>
   );

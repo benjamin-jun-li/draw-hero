@@ -2,15 +2,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Menu } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { InfoProps } from "@/lib/types";
 import { useQuery } from "convex/react";
-import { font } from "../dashboard/org_sidebar";
-import Hint from "../hint";
-import Actions from "../actions";
+import { font } from "../../dashboard/org_sidebar";
+import Hint from "../../hint";
+import Actions from "../../actions";
 import useRenameModal from "@/store/use_rename_modal";
 
 const TabSeparator = () => {
@@ -32,10 +32,7 @@ const Info = ({ boardID }: InfoProps) => {
           <Button variant="board" className="px-2">
             <Image src="/logo.svg" alt="logo" width={40} height={40} />
             <span
-              className={cn(
-                "font-semibold text-xl ml-2 text-neutral-900",
-                font.className
-              )}
+              className={cn("text-xl ml-2 text-neutral-900", font.className)}
             >
               Board
             </span>

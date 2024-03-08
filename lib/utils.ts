@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { Camera } from "./types";
+import { Camera, Color } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -37,4 +37,9 @@ export const pointerEventToCanvasPoint = (
     x: Math.round(e.clientX) - camera.x,
     y: Math.round(e.clientY) - camera.y,
   };
+};
+
+export const colorToHex = (color: Color): string => {
+  const pattern = (pos: number) => `${pos.toString(16).padStart(2, "0")}`;
+  return "#" + pattern(color.r) + pattern(color.g) + pattern(color.b);
 };

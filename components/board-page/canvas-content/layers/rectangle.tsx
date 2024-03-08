@@ -1,4 +1,5 @@
 import { RectangleProps } from "@/lib/types";
+import { colorToHex } from "@/lib/utils";
 
 const Rectangle = ({
   id,
@@ -17,8 +18,8 @@ const Rectangle = ({
       width={width}
       height={height}
       strokeWidth={1}
-      fill="#000"
-      stroke="transparent"
+      fill={fill ? colorToHex(fill) : "#CCC"}
+      stroke={selectionColor || "transparent"}
     />
   );
 };

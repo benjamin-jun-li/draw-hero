@@ -6,9 +6,7 @@ import Cursor from "./cursor";
 const Cursors = () => {
   const ids = useOthersConnectionIds();
 
-  return (ids.map((connID) => (
-    <Cursor key={connID} connectionID={connID} />
-  )))
+  return ids.map((connID) => <Cursor key={connID} connectionID={connID} />);
 };
 
 const CursorsPresence = memo(() => {
