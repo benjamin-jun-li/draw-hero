@@ -132,6 +132,10 @@ export interface RectangleProps {
   selectionColor?: string;
 }
 
+export interface SelectionBoxProps {
+  onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void
+}
+
 /**
  * type for canvas
  */

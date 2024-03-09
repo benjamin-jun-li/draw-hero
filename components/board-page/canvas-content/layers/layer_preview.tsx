@@ -7,7 +7,6 @@ import Rectangle from "./rectangle";
 const LayerPreview = memo(
   ({ id, onLayerPointDown, selectionColor }: LayerPreviewProps) => {
     const layer = useStorage((root) => root.layers.get(id));
-    console.log(layer);
 
     if (!layer) return null;
 
@@ -22,7 +21,7 @@ const LayerPreview = memo(
           />
         );
       default:
-        console.warn("Unknown layer type");
+        break;
     }
     return <></>;
   }
