@@ -1,6 +1,6 @@
 "use client";
-import Hint from "../../hint";
-import { Button } from "../../ui/button";
+import Hint from "../../../hint";
+import { Button } from "../../../ui/button";
 import { ToolBtnProps } from "@/lib/types";
 
 const ToolBtn = ({

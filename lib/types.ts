@@ -128,16 +128,34 @@ export interface LayerPreviewProps {
 export interface RectangleProps {
   id: string,
   layer: RectangleLayer,
-  onPointDown: (e: React.PointerEvent, id: string) => void;
+  onPointerDown: (e: React.PointerEvent, id: string) => void;
   selectionColor?: string;
+}
+
+export interface EllipseProps extends Omit<RectangleProps, 'layer'> {
+  layer: EllipseLayer;
 }
 
 export interface SelectionBoxProps {
   onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void
 }
 
+export interface SelectionToolsProps {
+  camera: Camera;
+  setLastUsedColor: (color: Color) => void;
+}
+
+export interface ColorPickerProps {
+  onChange: (color: Color) => void;
+}
+
+export interface ColorButtonProps {
+  onClick: (color: Color) => void;
+  color: Color;
+}
+
 /**
- * type for canvas
+ * @description type for canvas
  */
 export enum CanvasMode {
   None,

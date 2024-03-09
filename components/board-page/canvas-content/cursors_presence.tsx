@@ -1,7 +1,7 @@
 "use client";
 import { memo } from "react";
 import { useOthersConnectionIds } from "@/liveblocks.config";
-import Cursor from "./cursor";
+import Cursor from "./canvas_gadgets/cursor";
 
 const Cursors = () => {
   const ids = useOthersConnectionIds();

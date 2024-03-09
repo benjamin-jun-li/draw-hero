@@ -4,14 +4,14 @@ import { colorToHex } from "@/lib/utils";
 const Rectangle = ({
   id,
   layer,
-  onPointDown,
+  onPointerDown,
   selectionColor,
 }: RectangleProps) => {
   const { x, y, width, height, fill } = layer;
   return (
     <rect
       className="drop-shadow-md "
-      onPointerDown={(e) => onPointDown(e, id)}
+      onPointerDown={(e) => onPointerDown(e, id)}
       style={{ transform: `translate(${x}px, ${y}px)` }}
       x={0}
       y={0}

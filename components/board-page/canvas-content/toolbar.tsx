@@ -8,7 +8,7 @@ import {
   Type,
   Undo2,
 } from "lucide-react";
-import ToolBtn from "./tool_button";
+import ToolBtn from "./canvas_gadgets/tool_button";
 import { CanvasLayerType, CanvasMode, ToolBarProps } from "@/lib/types";
 
 const Toolbar = ({
