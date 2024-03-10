@@ -11,9 +11,9 @@ const convex = new ConvexReactClient(convexUrl);
 
 const ConvexClientProvider = ({ children }: LayoutProps) => {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignInUrl="/dashboard" afterSignUpUrl="/dashboard">
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
-        <Authenticated>{children}</Authenticated>
+        {children}
         <AuthLoading>
           <Loading />
         </AuthLoading>

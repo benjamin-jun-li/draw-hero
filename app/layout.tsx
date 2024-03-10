@@ -22,7 +22,6 @@ const RootLayout = ({
     <html lang="en">
       <body className={cn(inter.className, "min-h-screen")}>
         <Toaster richColors />
-
         <ConvexClientProvider>
           <ModalProvider />
           {children}
