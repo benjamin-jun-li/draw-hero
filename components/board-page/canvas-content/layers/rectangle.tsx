@@ -18,7 +18,7 @@ const Rectangle = ({
       width={width}
       height={height}
       strokeWidth={1}
-      fill={fill ? colorToHex(fill) : "#CCC"}
+      fill={fill ? colorToHex(fill) : "#eee"}
       stroke={selectionColor || "transparent"}
     />
   );

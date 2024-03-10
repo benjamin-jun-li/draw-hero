@@ -100,13 +100,20 @@ export const findIntersectingLayersWithRectangle = (
 
     const { x, y, height, width } = layer;
 
-    if (rect.x + rect.width > x && 
+    if (
+      rect.x + rect.width > x &&
       rect.x < x + width &&
       rect.y + rect.height > y &&
-      rect.y < y + height) {
-        ids.push(layerID);
+      rect.y < y + height
+    ) {
+      ids.push(layerID);
     }
   }
 
   return ids;
 };
+
+export const getContrastingTextColor = (color: Color) : string => {
+  const luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+  return luminance > 182 ? "black" : "white"
+}

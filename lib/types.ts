@@ -125,19 +125,30 @@ export interface LayerPreviewProps {
   selectionColor?: string;
 }
 
-export interface RectangleProps {
-  id: string,
-  layer: RectangleLayer,
+interface BaseLayerProps {
+  id: string;
   onPointerDown: (e: React.PointerEvent, id: string) => void;
   selectionColor?: string;
 }
 
-export interface EllipseProps extends Omit<RectangleProps, 'layer'> {
+export interface RectangleProps extends BaseLayerProps {
+  layer: RectangleLayer;
+}
+
+export interface EllipseProps extends BaseLayerProps {
   layer: EllipseLayer;
 }
 
+export interface TextProps extends BaseLayerProps {
+  layer: TextLayer;
+}
+
+export interface NoteProps extends BaseLayerProps {
+  layer: NoteLayer;
+}
+
 export interface SelectionBoxProps {
-  onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void
+  onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void;
 }
 
 export interface SelectionToolsProps {

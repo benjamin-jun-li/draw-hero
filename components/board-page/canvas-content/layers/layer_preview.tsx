@@ -4,6 +4,8 @@ import { CanvasLayerType, LayerPreviewProps } from "@/lib/types";
 import { useStorage } from "@/liveblocks.config";
 import Rectangle from "./rectangle";
 import Ellipse from "./ellipse";
+import Text from "./text";
+import Note from "./note";
 
 const LayerPreview = memo(
   ({ id, onLayerPointDown, selectionColor }: LayerPreviewProps) => {
@@ -24,6 +26,24 @@ const LayerPreview = memo(
       case CanvasLayerType.Rectangle:
         return (
           <Rectangle
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointDown}
+            selectionColor={selectionColor}
+          />
+        );
+      case CanvasLayerType.Text:
+        return (
+          <Text
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointDown}
+            selectionColor={selectionColor}
+          />
+        );
+      case CanvasLayerType.Note:
+        return (
+          <Note
             id={id}
             layer={layer}
             onPointerDown={onLayerPointDown}
