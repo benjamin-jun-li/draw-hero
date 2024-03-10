@@ -10,7 +10,7 @@ import { useState } from "react";
 export const useApiMutation = (mutationFn: FunctionReference<"mutation">) => {
   const [pending, setPending] = useState(false);
   const apiMutation = useMutation(mutationFn);
-  const mutate = async (...payload: OptionalRestArgs<FunctionReference<"mutation">>) => {
+  const mutate = async (payload: any) => {
     setPending(true);
     try {
       const result = await apiMutation(payload);
