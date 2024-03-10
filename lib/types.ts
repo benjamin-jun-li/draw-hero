@@ -139,6 +139,15 @@ export interface EllipseProps extends BaseLayerProps {
   layer: EllipseLayer;
 }
 
+export interface PathProps {
+  x: number,
+  y: number,
+  points: number[][],
+  onPointerDown?: (e: React.PointerEvent) => void;
+  fill: string,
+  stroke?: string,
+}
+
 export interface TextProps extends BaseLayerProps {
   layer: TextLayer;
 }

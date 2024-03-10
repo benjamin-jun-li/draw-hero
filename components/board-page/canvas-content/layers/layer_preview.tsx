@@ -6,6 +6,8 @@ import Rectangle from "./rectangle";
 import Ellipse from "./ellipse";
 import Text from "./text";
 import Note from "./note";
+import Path from "./path";
+import { colorToHex } from "@/lib/utils";
 
 const LayerPreview = memo(
   ({ id, onLayerPointDown, selectionColor }: LayerPreviewProps) => {
@@ -14,6 +16,18 @@ const LayerPreview = memo(
     if (!layer) return null;
 
     switch (layer.type) {
+      case CanvasLayerType.Path:
+        return (
+          <Path
+            key={id}
+            x={layer.x}
+            y={layer.y}
+            points={layer.points}
+            fill={layer.fill ? colorToHex(layer.fill) : "#eee"}
+            onPointerDown={(e) => onLayerPointDown(e, id)}
+            stroke={selectionColor}
+          />
+        );
       case CanvasLayerType.Ellipse:
         return (
           <Ellipse
