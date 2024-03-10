@@ -12,9 +12,8 @@ import { colorToHex } from "@/lib/utils";
 const LayerPreview = memo(
   ({ id, onLayerPointDown, selectionColor }: LayerPreviewProps) => {
     const layer = useStorage((root) => root.layers.get(id));
-
+    
     if (!layer) return null;
-
     switch (layer.type) {
       case CanvasLayerType.Path:
         return (

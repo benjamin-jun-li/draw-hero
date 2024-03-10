@@ -21,7 +21,7 @@ import {
   useStorage,
 } from "@/liveblocks.config";
 import { LiveObject } from "@liveblocks/client";
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import Info from "./canvas-content/info";
 import Participants from "./canvas-content/participants";
 import Toolbar from "./canvas-content/toolbar";
@@ -45,6 +45,8 @@ const MAX_LAYERS = 150;
 
 const Canvas = ({ boardID }: CanvasProps) => {
   const layerIds = useStorage((root) => root.layerIds);
+
+  const pencilDraft = useSelf((me) => me.presence.pencilDraft);
   const [canvasState, setCanvasState] = useState<CanvasState>({
     mode: CanvasMode.None,
   });
@@ -54,7 +56,7 @@ const Canvas = ({ boardID }: CanvasProps) => {
     g: 0,
     b: 0,
   });
-  const pencilDraft = useSelf((me) => me.presence.pencilDraft);
+  
   useDisableScrollBounce(); // prevent auto-scrolling for different screen-size collaboration
   const history = useHistory();
   const canUndo = useCanUndo();
@@ -99,7 +101,7 @@ const Canvas = ({ boardID }: CanvasProps) => {
         penColor: lastUsedColor,
       });
     },
-    []
+    [lastUsedColor]
   );
 
   const continueDrawing = useMutation(
@@ -122,7 +124,7 @@ const Canvas = ({ boardID }: CanvasProps) => {
             : [...pencilDraft, [point.x, point.y, e.pressure]],
       });
     },
-    []
+    [canvasState.mode]
   );
 
   const insertPath = useMutation(
