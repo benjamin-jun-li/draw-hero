@@ -28,7 +28,7 @@ const Info = ({ boardID }: InfoProps) => {
   return (
     <div className="absolute top-2 left-2 bg-neutral-100 rounded-md px-1.5 h-12 flex items-center shadow-md">
       <Hint label="Go to boards" side="bottom" sideOffset={10}>
-        <Link href="/">
+        <Link href="/dashboard">
           <Button variant="board" className="px-2">
             <Image src="/logo.svg" alt="logo" width={40} height={40} />
             <span

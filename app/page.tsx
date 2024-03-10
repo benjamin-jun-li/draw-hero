@@ -12,9 +12,9 @@ export default function Page() {
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link
             className="text-md font-medium hover:underline underline-offset-4"
-            href="#"
+            href="/dashboard"
           >
-            Features
+            Dashboard
           </Link>
           <Link
             className="text-md font-medium hover:underline underline-offset-4"
